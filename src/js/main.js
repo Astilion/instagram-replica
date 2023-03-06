@@ -4,7 +4,6 @@ const likes = document.querySelector(".post__likes-counter--value");
 const container = document.querySelector(".container");
 const DOG_URL = "https://dog.ceo/api/breeds/image/random";
 
-
 const handleLogo = () => {
 	fetch(DOG_URL)
 		.then(res => res.json())
@@ -161,7 +160,7 @@ const addContent = () => {
 	postCommentSectionAddCommentBox.appendChild(
 		postCommentSectionAddCommentTextarea
 	);
-}
+};
 
 const handleScroll = () => {
 	const scrolled = window.scrollY;
@@ -169,10 +168,8 @@ const handleScroll = () => {
 	const bodyHeight = document.body.offsetHeight;
 	const windowHeight = window.innerHeight;
 
-	if (bodyHeight < windowHeight) {
-		addContent()
-	  } else if (scrolled + windowHeight >= bodyHeight - treshold) {
-		addContent()
+	if (scrolled + windowHeight >= bodyHeight - treshold) {
+		addContent();
 	}
 };
 const handleLikes = element => {
@@ -193,5 +190,6 @@ const handleNumbers = (startNumber, finalNumber, duration, element) => {
 };
 
 handleLikes(likes);
+addContent();
 
 window.addEventListener("scroll", handleScroll);
