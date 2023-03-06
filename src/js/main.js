@@ -20,9 +20,6 @@ const handleImage = () => {
 };
 handleImage();
 
-
-
-
 const handleScroll = () => {
 	const scrolled = window.scrollY;
 	const treshold = 500;
@@ -117,18 +114,61 @@ const handleScroll = () => {
 
 		// create post likes counter element
 		const postLikesCounter = document.createElement("div");
-		postLikesCounter.classList.add('post__likes-counter');
-		postLikesCounter.textContent = 'Likes : '
-		newPost.appendChild(postLikesCounter)
+		postLikesCounter.classList.add("post__likes-counter");
+		postLikesCounter.textContent = "Likes : ";
+		newPost.appendChild(postLikesCounter);
 		//create post__likes-counter--value
 		const postLikesCounterValue = document.createElement("span");
 		postLikesCounterValue.classList.add("post__likes-counter--value");
 		postLikesCounterValue.textContent = "0";
 		postLikesCounter.appendChild(postLikesCounterValue);
 		handleLikes(postLikesCounterValue);
+
+		// add comment section
+		const postCommentSection = document.createElement("div");
+		postCommentSection.classList.add("post__comment-section");
+		newPost.appendChild(postCommentSection);
+
+		// create comment section comments box
+		const postCommentSectionCommentsBox = document.createElement("div");
+		postCommentSectionCommentsBox.classList.add(
+			"post__comment-section--comments-box"
+		);
+		postCommentSection.appendChild(postCommentSectionCommentsBox);
+
+		// add comments
+		const postCommentSectionComment1 = document.createElement("div");
+		postCommentSectionComment1.classList.add("post__comment-section--comment");
+		postCommentSectionComment1.innerHTML =
+			"<p><span>UserName: </span>Lorem ipsum dolor sit amet consectetur.</p>";
+		postCommentSectionCommentsBox.appendChild(postCommentSectionComment1);
+
+		const postCommentSectionComment2 = document.createElement("div");
+		postCommentSectionComment2.classList.add("post__comment-section--comment");
+		postCommentSectionComment2.innerHTML =
+			"<p><span>UserName: </span>Lorem ipsum dolor sit.</p>";
+		postCommentSectionCommentsBox.appendChild(postCommentSectionComment2);
+
+		// create comment section add comment box
+		const postCommentSectionAddCommentBox = document.createElement("div");
+		postCommentSectionAddCommentBox.classList.add(
+			"post__comment-section__add-comment-box"
+		);
+		postCommentSection.appendChild(postCommentSectionAddCommentBox);
+
+		const postCommentSectionAddCommentTextarea =
+			document.createElement("textarea");
+		postCommentSectionAddCommentTextarea.setAttribute("name", "comment");
+		postCommentSectionAddCommentTextarea.setAttribute(
+			"placeholder",
+			"Add comment..."
+		);
+		postCommentSectionAddCommentBox.appendChild(
+			postCommentSectionAddCommentTextarea
+		);
 	}
 };
-const handleLikes = (element) => {
+const handleLikes = element => {
 	const likesNumber = Math.floor(Math.random() * 99999) + 1;
 	handleNumbers(0, likesNumber, 400, element);
 };
@@ -142,11 +182,9 @@ const handleNumbers = (startNumber, finalNumber, duration, element) => {
 			currentNumber = finalNumber;
 		}
 		element.innerHTML = currentNumber.toLocaleString();
-		console.log('current number:', currentNumber);
 	}, 10);
 };
 
 handleLikes(likes);
 
 window.addEventListener("scroll", handleScroll);
-
