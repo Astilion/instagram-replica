@@ -3,6 +3,24 @@ const postImage = document.querySelector(".post__image--url");
 const likes = document.querySelector(".post__likes-counter--value");
 const container = document.querySelector(".container");
 const DOG_URL = "https://dog.ceo/api/breeds/image/random";
+const timelist = [
+	"1 hour ago",
+	"2 hours ago",
+	"3 hours ago",
+	"4 hours ago",
+	"1 hours ago",
+	"1 hours ago",
+	"1 hours ago",
+	"1 hours ago",
+	"1 day ago",
+	"2 days ago",
+	"3 days ago",
+	"4 days ago",
+	"5 days ago",
+	"6 days ago",
+	"7 days ago",
+];
+const timeRandom = document.querySelector(".post__bar--timerandom");
 
 const handleLogo = () => {
 	fetch(DOG_URL)
@@ -18,6 +36,11 @@ const handleImage = () => {
 		.catch(err => console.error(err));
 };
 handleImage();
+const handleTime1 = () => {
+	const revealTime = Math.floor(Math.random() * timelist.length);
+	timeRandom.textContent = timelist[revealTime];
+};
+handleTime1();
 
 const addContent = () => {
 	const newPost = document.createElement("div");
@@ -48,8 +71,16 @@ const addContent = () => {
 	// create post bar time element
 	const postBarTime = document.createElement("span");
 	postBarTime.classList.add("post__bar--time");
-	postBarTime.textContent = " • date";
+	postBarTime.textContent = " • ";
 	postBar.appendChild(postBarTime);
+	const handleTimeNew = () => {
+		const revealTime = Math.floor(Math.random() * timelist.length);
+		postBarTimeRandom.textContent = timelist[revealTime];
+	};
+	const postBarTimeRandom = document.createElement("span");
+	postBarTimeRandom.classList.add("post__bar--timerandom");
+	postBarTime.appendChild(postBarTimeRandom);
+	handleTimeNew();
 	// create post image element
 	const postImage = document.createElement("div");
 	postImage.classList.add("post__image");
